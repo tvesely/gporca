@@ -71,10 +71,13 @@ namespace gpopt
 			{
 			
 				private:
-				
+
 					// MD id of sort operator
 					gpmd::IMDId *m_pmdid;
-					
+
+					// MD id of sort collation operator
+					gpmd::IMDId *m_pmdidcol;
+
 					// sort column
 					const CColRef *m_pcr;
 					
@@ -87,7 +90,7 @@ namespace gpopt
 				public:
 					
 					// ctor
-					COrderExpression(gpmd::IMDId *pmdid, const CColRef *pcr, ENullTreatment ent);
+					COrderExpression(gpmd::IMDId *pmdid, gpmd::IMDId *pmdidcol, const CColRef *pcr, ENullTreatment ent);
 					
 					// dtor
 					virtual
@@ -98,7 +101,13 @@ namespace gpopt
 					{
 						return m_pmdid;
 					}
-					
+
+					// accessor of sort collation operator midid
+					gpmd::IMDId *PmdidSortCollationOp() const
+					{
+						return m_pmdidcol;
+					}
+
 					// accessor of sort column
 					const CColRef *Pcr() const
 					{
@@ -162,7 +171,14 @@ namespace gpopt
 				COrderExpression *poe = (*m_pdrgpoe)[ul]; 
 				return poe->PmdidSortOp();
 			}
-			
+
+			// accessor of sort operator of the n-th component
+			IMDId *PmdidSortCollationOp(ULONG ul) const
+			{
+				COrderExpression *poe = (*m_pdrgpoe)[ul];
+				return poe->PmdidSortCollationOp();
+			}
+
 			// accessor of sort column of the n-th component
 			const CColRef *Pcr(ULONG ul) const
 			{
@@ -184,7 +200,7 @@ namespace gpopt
 			}
 			
 			// append new component
-			void Append(gpmd::IMDId *pmdid, const CColRef *pcr, ENullTreatment ent);
+			void Append(gpmd::IMDId *pmdid, gpmd::IMDId *pmdidcol, const CColRef *pcr, ENullTreatment ent);
 			
 			// extract colref set of order columns
 			virtual

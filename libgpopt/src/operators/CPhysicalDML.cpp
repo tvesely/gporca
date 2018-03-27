@@ -508,7 +508,7 @@ CPhysicalDML::PosComputeRequired
 		{
 			IMDId *pmdid = m_pcrAction->Pmdtype()->PmdidCmp(IMDType::EcmptL);
 			pmdid->AddRef();
-			pos->Append(pmdid, m_pcrAction, COrderSpec::EntAuto);
+			pos->Append(pmdid, pmdidcol, m_pcrAction, COrderSpec::EntAuto);
 		}
 	}
 	else if (m_ptabdesc->FPartitioned())

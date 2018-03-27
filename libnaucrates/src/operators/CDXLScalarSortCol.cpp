@@ -33,6 +33,8 @@ CDXLScalarSortCol::CDXLScalarSortCol
 	ULONG ulColId,
 	IMDId *pmdidSortOp,
 	CWStringConst *pstrSortOpName,
+	IMDId *pmdidSortCollationOp,
+	CWStringConst *pstrSortCollationOpName,
 	BOOL fSortNullsFirst
 	)
 	:
@@ -40,6 +42,8 @@ CDXLScalarSortCol::CDXLScalarSortCol
 	m_ulColId(ulColId),
 	m_pmdidSortOp(pmdidSortOp),
 	m_pstrSortOpName(pstrSortOpName),
+	m_pmdidSortCollationOp(pmdidSortCollationOp),
+	m_pstrSortCollationOpName(pstrSortCollationOpName),
 	m_fSortNullsFirst(fSortNullsFirst)
 {
 	GPOS_ASSERT(m_pmdidSortOp->FValid());
@@ -114,6 +118,20 @@ IMDId *
 CDXLScalarSortCol::PmdidSortOp() const
 {
 	return m_pmdidSortOp;
+}
+
+//---------------------------------------------------------------------------
+//	@function:
+//		CDXLScalarSortCol::PmdidSortCollationOp
+//
+//	@doc:
+//		Oid of the sorting operator for the column from the catalog
+//
+//---------------------------------------------------------------------------
+IMDId *
+CDXLScalarSortCol::PmdidSortCollationOp() const
+{
+	return m_pmdidSortCollationOp;
 }
 
 //---------------------------------------------------------------------------
