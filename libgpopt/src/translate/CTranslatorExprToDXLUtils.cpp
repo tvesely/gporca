@@ -1254,6 +1254,7 @@ CTranslatorExprToDXLUtils::PcrCreate
 	CMDAccessor *pmda,
 	CColumnFactory *pcf,
 	IMDId *pmdidType,
+	IMDId *pmdidCollation,
 	INT iTypeModifier,
 	const WCHAR *wszName
 	)
@@ -1261,7 +1262,7 @@ CTranslatorExprToDXLUtils::PcrCreate
 	const IMDType *pmdtype = pmda->Pmdtype(pmdidType);
 	
 	CName *pname = GPOS_NEW(pmp) CName(GPOS_NEW(pmp) CWStringConst(wszName), true /*fOwnsMemory*/);
-	CColRef *pcr = pcf->PcrCreate(pmdtype, iTypeModifier, *pname);
+	CColRef *pcr = pcf->PcrCreate(pmdtype, pmdidCollation, iTypeModifier, *pname);
 	GPOS_DELETE(pname);
 	return pcr;
 }

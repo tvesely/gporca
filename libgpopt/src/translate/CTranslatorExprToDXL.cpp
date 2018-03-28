@@ -5410,6 +5410,7 @@ CTranslatorExprToDXL::PdxlnCTAS
 											pcr->UlId(),
 											pcd->IAttno(),
 											pmdidColType,
+											pmdidCollation,
 											pcr->ITypeModifier(),
 											false /* fdropped */,
 											pcd->UlWidth()
@@ -7194,13 +7195,16 @@ CTranslatorExprToDXL::Pdxltabdesc
 		}
 		else
 		{
-			pcr = m_pcf->PcrCreate(pcd->Pmdtype(), pcd->ITypeModifier(), pcd->Name());
+			pcr = m_pcf->PcrCreate(pcd->Pmdtype(), pcd->PmdidCollation(), pcd->ITypeModifier(), pcd->Name());
 		}
 
 		// use the col ref id for the corresponding output output column as 
 		// colid for the dxl column
 		CMDIdGPDB *pmdidColType = CMDIdGPDB::PmdidConvert(pcr->Pmdtype()->Pmdid());
 		pmdidColType->AddRef();
+
+		CMDIdGPDB *pmdidCollation = GPOS_NEW(m_pmp) CMDIdGPDB(*CMDIdGPDB::PmdidConvert(pcr->PmdidCollation()));
+		pmdidCollation->AddRef();
 
 		CDXLColDescr *pdxlcd = GPOS_NEW(m_pmp) CDXLColDescr
 											(
@@ -7209,6 +7213,7 @@ CTranslatorExprToDXL::Pdxltabdesc
 											pcr->UlId(),
 											pcd->IAttno(),
 											pmdidColType,
+											pmdidCollation,
 											pcr->ITypeModifier(),
 											false /* fdropped */,
 											pcd->UlWidth()

@@ -827,6 +827,7 @@ CTranslatorDXLToExpr::BuildSetOpChild
 		}
 
 		const IMDType *pmdtype = m_pmda->Pmdtype(pmdidDest);
+		const IMDId *pmdidCollation = pdxlcdOutput->PmdidCollation();
 		INT iTypeModifier = pdxlcdOutput->ITypeModifier();
 
 		BOOL fEqualTypes = IMDId::FEqualMDId(pmdidSource, pmdidDest);
@@ -838,7 +839,7 @@ CTranslatorDXLToExpr::BuildSetOpChild
 			// input column is an outer reference, add a project element for input column
 
 			// add the colref to the hash map between DXL ColId and colref as they can used above the setop
-			CColRef *pcrNew = PcrCreate(pcr, pmdtype, iTypeModifier, fFirstChild, pdxlcdOutput->UlID());
+			CColRef *pcrNew = PcrCreate(pcr, pmdtype, pmdidCollation, iTypeModifier, fFirstChild, pdxlcdOutput->UlID());
 			(*ppdrgpcrChild)->Append(pcrNew);
 
 			CExpression *pexprChildProjElem = NULL;
@@ -873,7 +874,7 @@ CTranslatorDXLToExpr::BuildSetOpChild
 		if (fUnionOrUnionAll || fFirstChild)
 		{
 			// add the colref to the hash map between DXL ColId and colref as they can used above the setop
-			CColRef *pcrNew = PcrCreate(pcr, pmdtype, iTypeModifier, fFirstChild, pdxlcdOutput->UlID());
+			CColRef *pcrNew = PcrCreate(pcr, pmdtype, pmdidCollation, iTypeModifier, fFirstChild, pdxlcdOutput->UlID());
 			(*ppdrgpcrChild)->Append(pcrNew);
 
 			// introduce cast expression for input column
@@ -1019,6 +1020,7 @@ CTranslatorDXLToExpr::PcrCreate
 	(
 	const CColRef *pcr,
 	const IMDType *pmdtype,
+	const IMDId * pmdidCollation,
 	INT iTypeModifier,
 	BOOL fStoreMapping,
 	ULONG ulColId
@@ -1026,7 +1028,7 @@ CTranslatorDXLToExpr::PcrCreate
 {
 	// generate a new column reference
 	CName name(pcr->Name().Pstr());
-	CColRef *pcrNew = m_pcf->PcrCreate(pmdtype, iTypeModifier, name);
+	CColRef *pcrNew = m_pcf->PcrCreate(pmdtype, pmdidCollation, iTypeModifier, name);
 
 	if (fStoreMapping)
 	{
@@ -1066,7 +1068,7 @@ CTranslatorDXLToExpr::Pdrgpcr
 
 		CName name(pdxlcd->Pmdname()->Pstr());
 		// generate a new column reference
-		CColRef *pcr = m_pcf->PcrCreate(pmdtype, pdxlcd->ITypeModifier(), name);
+		CColRef *pcr = m_pcf->PcrCreate(pmdtype, pdxlcd->PmdidCollation(), pdxlcd->ITypeModifier(), name);
 		pdrgpcrOutput->Append(pcr);
 	}
 
@@ -2129,6 +2131,7 @@ CTranslatorDXLToExpr::Ptabdesc
 													(
 													m_pmp,
 													pmdtype,
+													pdxlcoldesc->PmdidCollation(),
 													pdxlcoldesc->ITypeModifier(),
 													CName(m_pmp, &strColName),
 													iAttNo,
@@ -2332,6 +2335,7 @@ CTranslatorDXLToExpr::PtabdescFromCTAS
 													(
 													m_pmp,
 													pmdtype,
+													pdxlcoldesc->PmdidCollation(),
 													pdxlcoldesc->ITypeModifier(),
 													CName(m_pmp, &strColName),
 													iAttNo,
@@ -2423,6 +2427,7 @@ CTranslatorDXLToExpr::PexprLogicalConstTableGet
 														(
 														m_pmp,
 														pmdtype,
+														pdxlcd->PmdidCollation(),
 														pdxlcd->ITypeModifier(),
 														name,
 														ulColIdx + 1, // iAttno
