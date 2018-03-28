@@ -28,7 +28,7 @@ CColumnDescriptor::CColumnDescriptor
 	(
 	IMemoryPool *pmp,
 	const IMDType *pmdtype,
-	const IMDType *pmdCollation,
+	const IMDId *pmdCollation,
 	INT iTypeModifier,
 	const CName &name,
 	INT iAttno,

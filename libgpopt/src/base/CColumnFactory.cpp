@@ -106,7 +106,7 @@ CColRef *
 CColumnFactory::PcrCreate
 	(
 	const IMDType *pmdtype,
-	const IMDType *pmdCollation,
+	const IMDId *pmdCollation,
 	INT iTypeModifier
 	)
 {
@@ -134,7 +134,7 @@ CColRef *
 CColumnFactory::PcrCreate
 	(
 	const IMDType *pmdtype,
-	const IMDType *pmdCollation,
+	const IMDId *pmdCollation,
 	INT iTypeModifier,
 	const CName &name
 	)
@@ -159,7 +159,7 @@ CColRef *
 CColumnFactory::PcrCreate
 	(
 	const IMDType *pmdtype,
-	const IMDType *pmdCollation,
+	const IMDId *pmdCollation,
 	INT iTypeModifier,
 	ULONG ulId,
 	const CName &name
@@ -228,7 +228,7 @@ CColRef *
 CColumnFactory::PcrCreate
 	(
 	const IMDType *pmdtype,
-	const IMDType *pmdCollation,
+	const IMDId *pmdCollation,
 	INT iTypeModifier,
 	INT iAttno,
 	BOOL fNullable,

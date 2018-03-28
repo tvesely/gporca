@@ -56,7 +56,7 @@ namespace gpopt
 			const IMDType *m_pmdtype;
 
 			// collation type
-			const IMDType *m_pmdCollation;
+			const IMDId *m_pmdCollation;
 
 			// type modifier
 			const INT m_iTypeModifier;
@@ -78,7 +78,7 @@ namespace gpopt
 			};
 		
 			// ctor
-			CColRef(const IMDType *pmdtype, const IMDType *pmdCollation, const INT iTypeModifier, ULONG ulId, const CName *pname);
+			CColRef(const IMDType *pmdtype, const IMDId *pmdCollation, const INT iTypeModifier, ULONG ulId, const CName *pname);
 
 			// dtor
 			virtual
@@ -91,7 +91,7 @@ namespace gpopt
 			}
 
 			// accessor to collation info
-			const IMDType *PmdCollation() const
+			const IMDId *PmdCollation() const
 			{
 				return m_pmdCollation;
 			}

@@ -29,7 +29,7 @@ const ULONG CColRef::m_ulInvalid = ULONG_MAX;
 CColRef::CColRef
 	(
 	const IMDType *pmdtype,
-	const IMDType *pmdCollation,
+	const IMDId *pmdCollation,
 	const INT iTypeModifier,
 	ULONG ulId,
 	const CName *pname

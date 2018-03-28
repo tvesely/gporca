@@ -57,7 +57,7 @@ CColRefTable::CColRefTable
 CColRefTable::CColRefTable
 	(
 	const IMDType *pmdtype,
-	const IMDType *pmdCollation,
+	const IMDId *pmdCollation,
 	INT iTypeModifier,
 	INT iAttno,
 	BOOL fNullable,

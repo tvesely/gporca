@@ -45,7 +45,7 @@ namespace gpopt
 			CColRefComputed
 				(
 				const IMDType *pmdtype,
-				const IMDType *pmdCollation,
+				const IMDId *pmdCollation,
 				INT iTypeModifier,
 				ULONG ulId, 
 				const CName *pname
