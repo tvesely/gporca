@@ -7647,9 +7647,6 @@ CTranslatorExprToDXL::PdxlnSortColList
 		// get sort column components
 		IMDId *pmdidSortOp = pos->PmdidSortOp(ul);
 		pmdidSortOp->AddRef();
-
-		IMDId *pmdidSortCollationOp = pos->PmdidSortCollationOp(ul);
-		pmdidSortCollationOp->AddRef();
 		
 		const CColRef *pcr = pos->Pcr(ul);
 		
@@ -7661,13 +7658,7 @@ CTranslatorExprToDXL::PdxlnSortColList
 		
 		CWStringConst *pstrSortOpName = 
 				GPOS_NEW(m_pmp) CWStringConst(m_pmp, pmdscop->Mdname().Pstr()->Wsz());
-
-		// get sort collation operator name
-		const IMDScalarOp *pmdsccolop = m_pmda->Pmdscop(pmdidSortCollationOp);
-
-		CWStringConst *pstrSortCollationOpName =
-			              GPOS_NEW(m_pmp) CWStringConst(m_pmp, pmdsccolop->Mdname().Pstr()->Wsz());
-
+		
 		BOOL fSortNullsFirst = false;
 		if (COrderSpec::EntFirst == ent)
 		{
@@ -7681,8 +7672,6 @@ CTranslatorExprToDXL::PdxlnSortColList
 							pcr->UlId(), 
 							pmdidSortOp,
 							pstrSortOpName,
-							pmdidSortCollationOp,
-							pstrSortCollationOpName,
 							fSortNullsFirst
 							);
 		

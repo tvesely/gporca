@@ -426,7 +426,6 @@ CDXLTokens::Init
 
 			{EdxltokenSortOpId, GPOS_WSZ_LIT("SortOperatorMdid")},
 			{EdxltokenSortOpName, GPOS_WSZ_LIT("SortOperatorName")},
-			{EdxltokenSortCollationId, GPOS_WSZ_LIT("SortCollationMdid")},
 			{EdxltokenSortDiscardDuplicates, GPOS_WSZ_LIT("SortDiscardDuplicates")},
 			{EdxltokenSortNullsFirst, GPOS_WSZ_LIT("SortNullsFirst")},
 			

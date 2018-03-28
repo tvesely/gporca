@@ -44,10 +44,6 @@ namespace gpdxl
 			
 			// name of sorting operator 
 			CWStringConst *m_pstrSortOpName;
-
-			// catalog Oid of the sorting collation operator
-			IMDId *m_pmdidSortCollation;
-
 			// sort nulls before other values
 			BOOL m_fSortNullsFirst;
 			
@@ -62,7 +58,6 @@ namespace gpdxl
 				ULONG ulColId,
 				IMDId *pmdidSortOp,
 				CWStringConst *pstrTypeName,
-				IMDId *pmdidSortCollation,
 				BOOL fSortNullsFirst
 				);
 			
@@ -80,10 +75,7 @@ namespace gpdxl
 			
 			// mdid of the sorting operator
 			IMDId *PmdidSortOp() const;
-
-			// mdid of the collation operator
-			IMDId *PmdidSortCollation() const;
-
+			
 			// whether nulls are sorted before other values
 			BOOL FSortNullsFirst() const;
 			

@@ -1549,22 +1549,12 @@ CDXLOperatorFactory::PdxlopSortCol
 								EdxltokenPhysicalSort
 								);
 
-	// parse collation operator id
-	IMDId *pmdidSortCollation = PmdidFromAttrs
-										(
-										pmm,
-										attrs,
-										EdxltokenSortCollationId,
-										EdxltokenPhysicalSort
-										);
-
-
 	// copy dynamic string into const string
 	CWStringConst *pstrSortOpNameCopy = GPOS_NEW(pmp) CWStringConst(pmp, pstrSortOpName->Wsz());
 
 	GPOS_DELETE(pstrSortOpName);
 
-	return GPOS_NEW(pmp) CDXLScalarSortCol(pmp, ulColId, pmdidSortOp, pstrSortOpNameCopy, pmdidSortCollation, fNullsFirst);
+	return GPOS_NEW(pmp) CDXLScalarSortCol(pmp, ulColId, pmdidSortOp, pstrSortOpNameCopy, fNullsFirst);
 }
 
 //---------------------------------------------------------------------------

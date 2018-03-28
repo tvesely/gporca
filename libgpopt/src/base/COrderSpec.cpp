@@ -37,13 +37,11 @@ GPOS_CPL_ASSERT(COrderSpec::EntSentinel == GPOS_ARRAY_SIZE(rgszNullCode));
 COrderSpec::COrderExpression::COrderExpression
 	(
 	gpmd::IMDId *pmdid,
-	gpmd::IMDId *pmdidcol,
 	const CColRef *pcr,
 	ENullTreatment ent
 	)
 	:
 	m_pmdid(pmdid),
-	m_pmdidcol(pmdidcol),
 	m_pcr(pcr),
 	m_ent(ent)
 {
@@ -168,12 +166,11 @@ void
 COrderSpec::Append
 	(
 	gpmd::IMDId *pmdid,
-	gpmd::IMDId *pmdidcol,
 	const CColRef *pcr,
 	ENullTreatment ent
 	)
 {
-	COrderExpression *poe = GPOS_NEW(m_pmp) COrderExpression(pmdid, pmdidcol, pcr, ent);
+	COrderExpression *poe = GPOS_NEW(m_pmp) COrderExpression(pmdid, pcr, ent);
 	m_pdrgpoe->Append(poe);
 }
 
@@ -320,9 +317,6 @@ COrderSpec::PosCopyWithRemappedColumns
 		IMDId *pmdid = poe->PmdidSortOp();
 		pmdid->AddRef();
 
-		IMDId *pmdidcol = poe->PmdidSortCollationOp();
-		pmdidcol->AddRef();
-
 		const CColRef *pcr = poe->Pcr();
 		ULONG ulId = pcr->UlId();
 		CColRef *pcrMapped = phmulcr->PtLookup(&ulId);
@@ -347,7 +341,7 @@ COrderSpec::PosCopyWithRemappedColumns
 		}
 
 		COrderSpec::ENullTreatment ent = poe->Ent();
-		pos->Append(pmdid, pmdidcol, pcrMapped, ent);
+		pos->Append(pmdid, pcrMapped, ent);
 	}
 
 	return pos;
@@ -385,11 +379,7 @@ COrderSpec::PosExcludeColumns
 
 		IMDId *pmdid = poe->PmdidSortOp();
 		pmdid->AddRef();
-
-		IMDId *pmdidcol = poe->PmdidSortCollationOp();
-		pmdidcol->AddRef();
-
-		pos->Append(pmdid, pmdidcol, pcr, poe->Ent());
+		pos->Append(pmdid, pcr, poe->Ent());
 	}
 
 	return pos;
