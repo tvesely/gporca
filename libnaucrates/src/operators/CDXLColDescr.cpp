@@ -34,6 +34,7 @@ CDXLColDescr::CDXLColDescr
 	ULONG ulId,
 	INT iAttno,
 	IMDId *pmdidType,
+	IMDId *pmdidCollation,
 	INT iTypeModifier,
 	BOOL fDropped,
 	ULONG ulWidth
@@ -44,6 +45,7 @@ CDXLColDescr::CDXLColDescr
 	m_ulId(ulId),
 	m_iAttno(iAttno),
 	m_pmdidType(pmdidType),
+	m_pmdidCollation(pmdidCollation),
 	m_iTypeModifier(iTypeModifier),
 	m_fDropped(fDropped),
 	m_ulWidth(ulWidth)
@@ -119,6 +121,12 @@ IMDId *
 CDXLColDescr::PmdidType() const
 {
 	return m_pmdidType;
+}
+
+IMDId *
+CDXLColDescr::PmdidCollation() const
+{
+	return m_pmdidCollation;
 }
 
 INT

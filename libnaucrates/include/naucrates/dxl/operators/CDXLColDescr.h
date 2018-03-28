@@ -57,6 +57,8 @@ namespace gpdxl
 			// mdid of column's type
 			IMDId *m_pmdidType;
 
+			IMDId *m_pmdidCollation;
+
 			INT m_iTypeModifier;
 
 			// is column dropped from the table: needed for correct restoring of attribute numbers in the range table entries
@@ -77,6 +79,7 @@ namespace gpdxl
 				ULONG ulId,
 				INT iAttno,
 				IMDId *pmdidType,
+				IMDId *pmdidCollation,
 				INT iTypeModifier,
 				BOOL fDropped,
 				ULONG ulWidth = ULONG_MAX
@@ -99,6 +102,8 @@ namespace gpdxl
 
 			// column type
 			IMDId *PmdidType() const;
+
+			IMDId *PmdidCollation() const;
 
 			INT ITypeModifier() const;
 
