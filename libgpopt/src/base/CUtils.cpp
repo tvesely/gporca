@@ -2437,7 +2437,7 @@ CUtils::PexprScalarProjListConst
 		CScalarConst *popScConst = GPOS_NEW(pmp) CScalarConst(pmp, pdatum);
 		CExpression *pexprScConst = GPOS_NEW(pmp) CExpression(pmp, popScConst);
 
-		CColRef *pcrNew = pcf->PcrCreate(pcr->Pmdtype(), pcr->PmdCollation(), pcr->ITypeModifier(), pcr->Name());
+		CColRef *pcrNew = pcf->PcrCreate(pcr->Pmdtype(), pcr->PmdidCollation(), pcr->ITypeModifier(), pcr->Name());
 		if (NULL != phmulcr)
 		{
 #ifdef GPOS_DEBUG
@@ -4436,7 +4436,7 @@ CUtils::PexprLogicalCTGDummy
 
 	// generate a bool column
 	const IMDTypeBool *pmdtypebool = pmda->PtMDType<IMDTypeBool>();
-	CColRef *pcr = pcf->PcrCreate(pmdtypebool, NULL, IDefaultTypeModifier);
+	CColRef *pcr = pcf->PcrCreate(pmdtypebool, GPOS_NEW(pmp) CMDIdGPDB(0), IDefaultTypeModifier);
 	DrgPcr *pdrgpcrCTG = GPOS_NEW(pmp) DrgPcr(pmp);
 	pdrgpcrCTG->Append(pcr);
 

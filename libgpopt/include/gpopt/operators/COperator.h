@@ -67,6 +67,8 @@ namespace gpopt
 			// is pattern of xform
 			BOOL m_fPattern;
 
+			IMDId *m_pmdidCollation;
+
 			// return an addref'ed copy of the operator
 			virtual
 			COperator *PopCopyDefault();
@@ -391,6 +393,8 @@ namespace gpopt
 			virtual 
 			IOstream &OsPrint(IOstream &os) const;
 
+			virtual
+			IMDId *PmdidCollation() const {return m_pmdidCollation;}
 	}; // class COperator
 
 }

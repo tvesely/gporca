@@ -472,7 +472,7 @@ CTranslatorDXLToExpr::PexprLogicalTVF
 													(
 													m_pmp,
 													pmdtype,
-													pdxlcoldesc->PmdCollation(),
+													pdxlcoldesc->PmdidCollation(),
 													pdxlcoldesc->ITypeModifier(),
 													CName(m_pmp, &strColName),
 													iAttNo,

@@ -90,7 +90,7 @@ namespace gpopt
 			}
 
 			// return collation id
-			const IMDId *PmdCollation() const
+			const IMDId *PmdidCollation() const
 			{
 				return m_pmdCollation;
 			}

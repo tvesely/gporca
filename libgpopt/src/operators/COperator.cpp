@@ -37,9 +37,14 @@ COperator::COperator
 	:
 	m_ulOpId(m_aulOpIdCounter.TIncr()),
 	m_pmp(pmp),
-	m_fPattern(false)
+	m_fPattern(false),
+	m_pmdidCollation(NULL)
 {
 	GPOS_ASSERT(NULL != pmp);
+	if (FScalar())
+	{
+		m_pmdidCollation = GPOS_NEW(pmp) CMDIdGPDB(0);
+	}
 }
 
 

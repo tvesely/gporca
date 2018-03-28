@@ -63,7 +63,7 @@ namespace gpopt
 			CColumnFactory(const CColumnFactory &);
 
 			// implementation of factory methods
-			CColRef *PcrCreate(const IMDType *pmdtype, const IMDId *pmdCollation, INT iTypeModifier, ULONG ulId, const CName &name);
+			CColRef *PcrCreate(const IMDType *pmdtype, const IMDId *pmdidCollation, INT iTypeModifier, ULONG ulId, const CName &name);
 			CColRef *PcrCreate
 					(
 					const CColumnDescriptor *pcoldesc,
@@ -84,10 +84,10 @@ namespace gpopt
 			void Initialize();
 
 			// create a column reference given only its type and type modifier, used for computed columns
-			CColRef *PcrCreate(const IMDType *pmdtype, const IMDId *pmdCollation, INT iTypeModifier);
+			CColRef *PcrCreate(const IMDType *pmdtype, const IMDId *pmdidCollation, INT iTypeModifier);
 
 			// create column reference given its type, type modifier, and name
-			CColRef *PcrCreate(const IMDType *pmdtype, const IMDId *pmdCollation, INT iTypeModifier, const CName &name);
+			CColRef *PcrCreate(const IMDType *pmdtype, const IMDId *pmdidCollation, INT iTypeModifier, const CName &name);
 
 			// create a column reference given its descriptor and name
 			CColRef *PcrCreate
@@ -101,7 +101,7 @@ namespace gpopt
 			CColRef *PcrCreate
 				(
 				const IMDType *pmdtype,
-				const IMDId *pmdCollation,
+				const IMDId *pmdidCollation,
 				INT iTypeModifier,
 				INT iAttno,
 				BOOL fNullable,
@@ -117,7 +117,7 @@ namespace gpopt
 				const CColRef *pcr
 				)
 			{
-				return PcrCreate(pcr->Pmdtype(), pcr->PmdCollation(), pcr->ITypeModifier());
+				return PcrCreate(pcr->Pmdtype(), pcr->PmdidCollation(), pcr->ITypeModifier());
 			}
 
 			// add mapping between computed column to its used columns

@@ -319,7 +319,7 @@ CLogicalConstTableGet::PdrgpcoldescMapping
 													(
 													pmp,
 													pcr->Pmdtype(),
-													pcr->PmdCollation(),
+													pcr->PmdidCollation(),
 													pcr->ITypeModifier(),
 													pcr->Name(),
 													ul + 1, //iAttno

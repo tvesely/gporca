@@ -220,14 +220,6 @@ namespace gpopt
 			virtual 
 			IMDId *PmdidType() const = 0;
 
-			// the collation of the scalar expression
-			virtual
-			IMDId *PmdidCollation() const
-			{
-				// TODO: What is the proper name for this?
-				return NULL ;
-			}
-
 			// the type modifier of the scalar expression
 			virtual
 			INT ITypeModifier() const
