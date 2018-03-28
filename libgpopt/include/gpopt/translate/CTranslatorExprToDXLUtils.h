@@ -80,6 +80,7 @@ namespace gpopt
 				CMDAccessor *pmda,
 				CColumnFactory *pcf,
 				IMDId *pmdid,
+				IMDId *pmCollation,
 				INT iTypeModifier,
 				const WCHAR *wszName
 				);
