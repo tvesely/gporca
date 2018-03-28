@@ -28,6 +28,7 @@ CColumnDescriptor::CColumnDescriptor
 	(
 	IMemoryPool *pmp,
 	const IMDType *pmdtype,
+	const IMDType *pmdCollation,
 	INT iTypeModifier,
 	const CName &name,
 	INT iAttno,
@@ -36,6 +37,7 @@ CColumnDescriptor::CColumnDescriptor
 	)
 	:
 	m_pmdtype(pmdtype),
+	m_pmdCollation(pmdCollation),
 	m_iTypeModifier(iTypeModifier),
 	m_name(pmp, name),
 	m_iAttno(iAttno),

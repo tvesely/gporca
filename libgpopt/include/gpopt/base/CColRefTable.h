@@ -68,6 +68,7 @@ namespace gpopt
 			CColRefTable
 				(
 				const IMDType *pmdtype,
+				const IMDType *pmdCollation,
 				INT iTypeModifier,
 				INT iAttno,
 				BOOL fNullable,

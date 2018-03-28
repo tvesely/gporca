@@ -1531,15 +1531,6 @@ CDXLOperatorFactory::PdxlopSortCol
 										);
 	CWStringDynamic *pstrSortOpName = CDXLUtils::PstrFromXMLCh(pmm, xmlszSortOpName);
 
-	// get sorting operator name
-	const XMLCh *xmlszSortCollationOpName = XmlstrFromAttrs
-		(
-			attrs,
-			EdxltokenSortCollationOpName,
-			EdxltokenScalarSortCol
-		);
-	CWStringDynamic *pstrSortCollationOpName = CDXLUtils::PstrFromXMLCh(pmm, xmlszSortCollationOpName);
-
 	// get null first property
 	BOOL fNullsFirst = FValueFromAttrs
 						(
@@ -1559,23 +1550,21 @@ CDXLOperatorFactory::PdxlopSortCol
 								);
 
 	// parse collation operator id
-	IMDId *pmdidSortCollationOp = PmdidFromAttrs
+	IMDId *pmdidSortCollation = PmdidFromAttrs
 										(
 										pmm,
 										attrs,
-										EdxltokenSortCollationOpId,
+										EdxltokenSortCollationId,
 										EdxltokenPhysicalSort
 										);
 
 
 	// copy dynamic string into const string
 	CWStringConst *pstrSortOpNameCopy = GPOS_NEW(pmp) CWStringConst(pmp, pstrSortOpName->Wsz());
-	CWStringConst *pstrSortCollationOpNameCopy = GPOS_NEW(pmp) CWStringConst(pmp, pstrSortCollationOpName->Wsz());
 
 	GPOS_DELETE(pstrSortOpName);
-	GPOS_DELETE(pstrSortCollationOpName);
 
-	return GPOS_NEW(pmp) CDXLScalarSortCol(pmp, ulColId, pmdidSortOp, pstrSortOpNameCopy, pmdidSortCollationOp, pstrSortCollationOpNameCopy, fNullsFirst);
+	return GPOS_NEW(pmp) CDXLScalarSortCol(pmp, ulColId, pmdidSortOp, pstrSortOpNameCopy, pmdidSortCollation, fNullsFirst);
 }
 
 //---------------------------------------------------------------------------

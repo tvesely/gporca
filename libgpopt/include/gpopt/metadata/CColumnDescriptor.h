@@ -40,6 +40,9 @@ namespace gpopt
 			// type information
 			const IMDType *m_pmdtype;
 
+			// collation information
+			const IMDType *m_pmdCollation;
+
 			// type modifier
 			const INT m_iTypeModifier;
 
@@ -62,6 +65,7 @@ namespace gpopt
 				(
 				IMemoryPool *pmp,
 				const IMDType *pmdtype,
+				const IMDType *pmdCollation,
 				INT iTypeModifier,
 				const CName &name,
 				INT iAttno,
@@ -83,6 +87,12 @@ namespace gpopt
 			const IMDType *Pmdtype() const
 			{
 				return m_pmdtype;
+			}
+
+			// return metadata type
+			const IMDType *PmdCollation() const
+			{
+				return m_pmdCollation;
 			}
 
 			// type modifier

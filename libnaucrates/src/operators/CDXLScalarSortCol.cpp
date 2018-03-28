@@ -33,8 +33,7 @@ CDXLScalarSortCol::CDXLScalarSortCol
 	ULONG ulColId,
 	IMDId *pmdidSortOp,
 	CWStringConst *pstrSortOpName,
-	IMDId *pmdidSortCollationOp,
-	CWStringConst *pstrSortCollationOpName,
+	IMDId *pmdidSortCollation,
 	BOOL fSortNullsFirst
 	)
 	:
@@ -42,8 +41,7 @@ CDXLScalarSortCol::CDXLScalarSortCol
 	m_ulColId(ulColId),
 	m_pmdidSortOp(pmdidSortOp),
 	m_pstrSortOpName(pstrSortOpName),
-	m_pmdidSortCollationOp(pmdidSortCollationOp),
-	m_pstrSortCollationOpName(pstrSortCollationOpName),
+	m_pmdidSortCollation(pmdidSortCollation),
 	m_fSortNullsFirst(fSortNullsFirst)
 {
 	GPOS_ASSERT(m_pmdidSortOp->FValid());
@@ -129,9 +127,9 @@ CDXLScalarSortCol::PmdidSortOp() const
 //
 //---------------------------------------------------------------------------
 IMDId *
-CDXLScalarSortCol::PmdidSortCollationOp() const
+CDXLScalarSortCol::PmdidSortCollation() const
 {
-	return m_pmdidSortCollationOp;
+	return m_pmdidSortCollation;
 }
 
 //---------------------------------------------------------------------------
@@ -170,6 +168,7 @@ CDXLScalarSortCol::SerializeToDXL
 	pxmlser->AddAttribute(CDXLTokens::PstrToken(EdxltokenColId), m_ulColId);
 	m_pmdidSortOp->Serialize(pxmlser, CDXLTokens::PstrToken(EdxltokenSortOpId));	
 	pxmlser->AddAttribute(CDXLTokens::PstrToken(EdxltokenSortOpName), m_pstrSortOpName);
+	m_pmdidSortCollation->Serialize(pxmlser, CDXLTokens::PstrToken(EdxltokenSortCollationId));
 	pxmlser->AddAttribute(CDXLTokens::PstrToken(EdxltokenSortNullsFirst), m_fSortNullsFirst);
 	pxmlser->CloseElement(CDXLTokens::PstrToken(EdxltokenNamespacePrefix), pstrElemName);
 }

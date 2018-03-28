@@ -387,8 +387,7 @@ namespace gpdxl
 
 		EdxltokenSortOpId,
 		EdxltokenSortOpName,
-		EdxltokenSortCollationOpId,
-		EdxltokenSortCollationOpName,
+		EdxltokenSortCollationId,
 		EdxltokenSortDiscardDuplicates,
 		EdxltokenSortNullsFirst,
 		

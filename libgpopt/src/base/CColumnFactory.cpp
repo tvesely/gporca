@@ -106,6 +106,7 @@ CColRef *
 CColumnFactory::PcrCreate
 	(
 	const IMDType *pmdtype,
+	const IMDType *pmdCollation,
 	INT iTypeModifier
 	)
 {
@@ -117,7 +118,7 @@ CColumnFactory::PcrCreate
 	CAutoP<CWStringDynamic> a_pstrTempName(pstrTempName);
 	pstrTempName->AppendFormat(wszFmt, ulId);
 	CWStringConst strName(pstrTempName->Wsz());
-	return PcrCreate(pmdtype, iTypeModifier, ulId, CName(&strName));
+	return PcrCreate(pmdtype, pmdCollation, iTypeModifier, ulId, CName(&strName));
 }
 
 
@@ -133,13 +134,14 @@ CColRef *
 CColumnFactory::PcrCreate
 	(
 	const IMDType *pmdtype,
+	const IMDType *pmdCollation,
 	INT iTypeModifier,
 	const CName &name
 	)
 {
 	ULONG ulId = m_aul.TIncr();
 
-	return PcrCreate(pmdtype, iTypeModifier, ulId, name);
+	return PcrCreate(pmdtype, pmdCollation, iTypeModifier, ulId, name);
 }
 	
 	
@@ -157,6 +159,7 @@ CColRef *
 CColumnFactory::PcrCreate
 	(
 	const IMDType *pmdtype,
+	const IMDType *pmdCollation,
 	INT iTypeModifier,
 	ULONG ulId,
 	const CName &name
@@ -165,7 +168,7 @@ CColumnFactory::PcrCreate
 	CName *pnameCopy = GPOS_NEW(m_pmp) CName(m_pmp, name); 
 	CAutoP<CName> a_pnameCopy(pnameCopy);
 
-	CColRef *pcr = GPOS_NEW(m_pmp) CColRefComputed(pmdtype, iTypeModifier, ulId, pnameCopy);
+	CColRef *pcr = GPOS_NEW(m_pmp) CColRefComputed(pmdtype, pmdCollation, iTypeModifier, ulId, pnameCopy);
 	(void) a_pnameCopy.PtReset();
 	CAutoP<CColRef> a_pcr(pcr);
 	
@@ -225,6 +228,7 @@ CColRef *
 CColumnFactory::PcrCreate
 	(
 	const IMDType *pmdtype,
+	const IMDType *pmdCollation,
 	INT iTypeModifier,
 	INT iAttno,
 	BOOL fNullable,
@@ -238,7 +242,7 @@ CColumnFactory::PcrCreate
 	CAutoP<CName> a_pnameCopy(pnameCopy);
 
 	CColRef *pcr =
-			GPOS_NEW(m_pmp) CColRefTable(pmdtype, iTypeModifier, iAttno, fNullable, ulId, pnameCopy, ulOpSource, ulWidth);
+			GPOS_NEW(m_pmp) CColRefTable(pmdtype, pmdCollation, iTypeModifier, iAttno, fNullable, ulId, pnameCopy, ulOpSource, ulWidth);
 	(void) a_pnameCopy.PtReset();
 	CAutoP<CColRef> a_pcr(pcr);
 
@@ -287,7 +291,7 @@ CColumnFactory::PcrCopy
 	CName name(pcr->Name());
 	if (CColRef::EcrtComputed == pcr->Ecrt())
 	{
-		return PcrCreate(pcr->Pmdtype(), pcr->ITypeModifier(), name);
+		return PcrCreate(pcr->Pmdtype(), pcr->PmdCollation(), pcr->ITypeModifier(), name);
 	}
 
 	GPOS_ASSERT(CColRef::EcrtTable == pcr->Ecrt());
@@ -297,6 +301,7 @@ CColumnFactory::PcrCopy
 	return PcrCreate
 			(
 			pcr->Pmdtype(),
+			pcr->PmdCollation(),
 			pcr->ITypeModifier(),
 			pcrTable->IAttno(),
 			pcrTable->FNullable(),

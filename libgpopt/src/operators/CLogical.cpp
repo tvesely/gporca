@@ -193,10 +193,12 @@ CLogical::PosFromIndex
 
 		IMDId *pmdid = pcr->Pmdtype()->PmdidCmp(IMDType::EcmptL);
 		pmdid->AddRef();
-	
+
+		IMDId *pmdCollation = pcr->PmdCollation();
+
 		// TODO:  March 27th 2012; we hard-code NULL treatment
 		// need to revisit
-		pos->Append(pmdid, pcr, COrderSpec::EntLast);
+		pos->Append(pmdid, pmdCollation, pcr, COrderSpec::EntLast);
 	}
 	
 	return pos;
