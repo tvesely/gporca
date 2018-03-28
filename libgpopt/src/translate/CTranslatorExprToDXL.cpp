@@ -5396,12 +5396,15 @@ CTranslatorExprToDXL::PdxlnCTAS
 		const CColumnDescriptor *pcd = ptabdesc->Pcoldesc(ul);
 
 		CMDName *pmdnameCol = GPOS_NEW(m_pmp) CMDName(m_pmp, pcd->Name().Pstr());
-		CColRef *pcr = m_pcf->PcrCreate(pcd->Pmdtype(), pcd->ITypeModifier(), pcd->Name());
+		CColRef *pcr = m_pcf->PcrCreate(pcd->Pmdtype(), pcd->PmdidCollation(), pcd->ITypeModifier(), pcd->Name());
 
 		// use the col ref id for the corresponding output output column as 
 		// colid for the dxl column
 		CMDIdGPDB *pmdidColType = CMDIdGPDB::PmdidConvert(pcr->Pmdtype()->Pmdid());
 		pmdidColType->AddRef();
+
+		CMDIdGPDB *pmdidCollation = GPOS_NEW(m_pmp) CMDIdGPDB(*CMDIdGPDB::PmdidConvert(pcr->PmdidCollation()));
+		pmdidCollation->AddRef();
 
 		CDXLColDescr *pdxlcd = GPOS_NEW(m_pmp) CDXLColDescr
 											(

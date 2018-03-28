@@ -254,7 +254,7 @@ CXformSplitGbAgg::PopulateLocalGlobalProjectList
 		// determine column reference for the new project element
 		const IMDAggregate *pmdagg = pmda->Pmdagg(popScAggFunc->Pmdid());
 		const IMDType *pmdtype = pmda->Pmdtype(pmdagg->PmdidTypeIntermediate());
-		CColRef *pcrLocal = pcf->PcrCreate(pmdtype, IDefaultTypeModifier);
+		CColRef *pcrLocal = pcf->PcrCreate(pmdtype, GPOS_NEW(pmp) CMDIdGPDB(0), IDefaultTypeModifier);
 		CColRef *pcrGlobal = popScPrEl->Pcr();
 
 		// create a new local aggregate function

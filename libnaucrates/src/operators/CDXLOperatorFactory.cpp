@@ -1824,7 +1824,7 @@ CDXLOperatorFactory::Pdxlcd
 	
 	GPOS_DELETE(pstrColumnName);
 	
-	return GPOS_NEW(pmp) CDXLColDescr(pmp, pmdname, ulId, iAttno, pmdidType, iTypeModifier, fColDropped, ulColLen);
+	return GPOS_NEW(pmp) CDXLColDescr(pmp, pmdname, ulId, iAttno, pmdidType, GPOS_NEW(pmp) CMDIdGPDB(0), iTypeModifier, fColDropped, ulColLen);
 }
 
 //---------------------------------------------------------------------------

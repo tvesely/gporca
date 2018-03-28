@@ -1757,7 +1757,7 @@ CXformUtils::PexprAssertUpdateCardinality
 
 	CScalar *pop = CScalar::PopConvert(pexprCountStar->Pop());
 	const IMDType *pmdtype = pmda->Pmdtype(pop->PmdidType());
-	CColRef *pcrProjElem = pcf->PcrCreate(pmdtype, pop->ITypeModifier());
+	CColRef *pcrProjElem = pcf->PcrCreate(pmdtype, pop->PmdidCollation(), pop->ITypeModifier());
 	 
 	CExpression *pexprProjElem = GPOS_NEW(pmp) CExpression
 									(
@@ -1948,7 +1948,7 @@ CXformUtils::AddMinAggs
 			CScalar *popMin = CScalar::PopConvert(pexprMinAgg->Pop());
 			
 			const IMDType *pmdtypeMin = pmda->Pmdtype(popMin->PmdidType());
-			pcrNew = pcf->PcrCreate(pmdtypeMin, popMin->ITypeModifier());
+			pcrNew = pcf->PcrCreate(pmdtypeMin, popMin->PmdidCollation(), popMin->ITypeModifier());
 			CExpression *pexprProjElemMin = GPOS_NEW(pmp) CExpression
 											(
 											pmp,
@@ -2429,7 +2429,7 @@ CXformUtils::PexprWindowWithRowNumber
 	CScalarWindowFunc *popScWindowFunc = CScalarWindowFunc::PopConvert(pexprScWindowFunc->Pop());
 	const IMDType *pmdtype = COptCtxt::PoctxtFromTLS()->Pmda()->Pmdtype(popScWindowFunc->PmdidType());
 	CName name(popScWindowFunc->PstrFunc());
-	CColRef *pcr = COptCtxt::PoctxtFromTLS()->Pcf()->PcrCreate(pmdtype, popScWindowFunc->ITypeModifier(), name);
+	CColRef *pcr = COptCtxt::PoctxtFromTLS()->Pcf()->PcrCreate(pmdtype, popScWindowFunc->PmdidCollation(), popScWindowFunc->ITypeModifier(), name);
 
 	// new project element
 	CScalarProjectElement *popScPrEl = GPOS_NEW(pmp) CScalarProjectElement(pmp, pcr);
