@@ -1226,7 +1226,7 @@ CXformUtils::PexprLogicalPartitionSelector
 	CColumnFactory *pcf = COptCtxt::PoctxtFromTLS()->Pcf();
 	CMDAccessor *pmda = COptCtxt::PoctxtFromTLS()->Pmda();
 	const IMDTypeOid *pmdtype = pmda->PtMDType<IMDTypeOid>();
-	CColRef *pcrOid = pcf->PcrCreate(pmdtype, IDefaultTypeModifier);
+	CColRef *pcrOid = pcf->PcrCreate(pmdtype, GPOS_NEW(pmp) CMDIdGPDB(0), IDefaultTypeModifier);
 	DrgPexpr *pdrgpexprFilters = PdrgpexprPartEqFilters(pmp, ptabdesc, pdrgpcr);
 
 	CLogicalPartitionSelector *popSelector = GPOS_NEW(pmp) CLogicalPartitionSelector(pmp, pmdidRel, pdrgpexprFilters, pcrOid);

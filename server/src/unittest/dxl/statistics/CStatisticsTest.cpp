@@ -876,6 +876,7 @@ CStatisticsTest::PtabdescTwoColumnSource
 											(
 											pmp,
 											pmdtype,
+											GPOS_NEW(pmp) CMDIdGPDB(0),
 											IDefaultTypeModifier,
 											nameColumn,
 											ul + 1,
@@ -919,6 +920,7 @@ CStatisticsTest::EresUnittest_CStatisticsBasic()
 		(void) pcf->PcrCreate
 				(
 				pmdtypeint4,
+				GPOS_NEW(pmp) CMDIdGPDB(0),
 				IDefaultTypeModifier,
 				0 /* iAttno */,
 				false /*FNullable*/,
@@ -933,6 +935,7 @@ CStatisticsTest::EresUnittest_CStatisticsBasic()
 		(void) pcf->PcrCreate
 				(
 				pmdtypeint4,
+				GPOS_NEW(pmp) CMDIdGPDB(0),
 				IDefaultTypeModifier,
 				1 /* iAttno */,
 				false /*FNullable*/,

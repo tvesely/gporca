@@ -2924,7 +2924,7 @@ CTranslatorExprToDXL::PdxlnProjectBoolConst
 
 	CDXLDatumBool *pdxldatum = GPOS_NEW(m_pmp) CDXLDatumBool(m_pmp, pmdid, false /* fNull */,  fVal);
 	CDXLScalarConstValue *pdxlopConstValue = GPOS_NEW(m_pmp) CDXLScalarConstValue(m_pmp, pdxldatum);
-	CColRef *pcr = m_pcf->PcrCreate(pmdtypebool, IDefaultTypeModifier);
+	CColRef *pcr = m_pcf->PcrCreate(pmdtypebool, GPOS_NEW(m_pmp) CMDIdGPDB(0), IDefaultTypeModifier);
 	CDXLNode *pdxlnPrEl = PdxlnProjElem(pcr, GPOS_NEW(m_pmp) CDXLNode(m_pmp, pdxlopConstValue));
 
 	CDXLScalarProjList *pdxlopPrL = GPOS_NEW(m_pmp) CDXLScalarProjList(m_pmp);
@@ -3349,7 +3349,7 @@ CTranslatorExprToDXL::PdxlnBooleanScalarWithSubPlan
 	CDXLDatumBool *pdxldatum = GPOS_NEW(m_pmp) CDXLDatumBool(m_pmp, pmdid, false /* fNull */, true /* fVal */);
 	CDXLScalarConstValue *pdxlopConstValue = GPOS_NEW(m_pmp) CDXLScalarConstValue(m_pmp, pdxldatum);
 
-	CColRef *pcr = m_pcf->PcrCreate(pmdtypebool, IDefaultTypeModifier);
+	CColRef *pcr = m_pcf->PcrCreate(pmdtypebool, GPOS_NEW(m_pmp) CMDIdGPDB(0), IDefaultTypeModifier);
 
 	CDXLNode *pdxlnPrEl = PdxlnProjElem(pcr, GPOS_NEW(m_pmp) CDXLNode(m_pmp, pdxlopConstValue));
 

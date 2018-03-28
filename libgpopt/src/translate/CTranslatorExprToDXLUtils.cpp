@@ -1434,7 +1434,7 @@ CTranslatorExprToDXLUtils::PdxlnPrLPartitionSelector
 		if (NULL == pcrOid)
 		{
 			const IMDTypeOid *pmdtype = pmda->PtMDType<IMDTypeOid>();
-			pcrOid = pcf->PcrCreate(pmdtype, IDefaultTypeModifier);
+			pcrOid = pcf->PcrCreate(pmdtype, GPOS_NEW(pmp) CMDIdGPDB(0), IDefaultTypeModifier);
 		}
 
 		CMDName *pmdname = GPOS_NEW(pmp) CMDName(pmp, pcrOid->Name().Pstr());
