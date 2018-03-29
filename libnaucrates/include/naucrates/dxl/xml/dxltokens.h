@@ -267,6 +267,9 @@ namespace gpdxl
 		EdxltokenValue,
 		EdxltokenTypeId,
 		EdxltokenTypeIds,
+
+		// Collation dxl token
+		EdxltokenCollation,
 		
 		EdxltokenConstTuple,
 		EdxltokenDatum,

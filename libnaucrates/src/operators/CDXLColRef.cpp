@@ -30,6 +30,7 @@ CDXLColRef::CDXLColRef
 	CMDName *pmdname,
 	ULONG ulId,
 	IMDId *pmdidType,
+	IMDId *pmdidCollation,
 	INT iTypeModifier
 	)
 	:
@@ -37,6 +38,7 @@ CDXLColRef::CDXLColRef
 	m_pmdname(pmdname),
 	m_ulId(ulId),
 	m_pmdidType(pmdidType),
+	m_pmdidCollation(pmdidCollation),
 	m_iTypeModifer(iTypeModifier)
 {
 	GPOS_ASSERT(m_pmdidType->FValid());
@@ -82,6 +84,12 @@ IMDId *
 CDXLColRef::PmdidType() const
 {
 	return m_pmdidType;
+}
+
+IMDId *
+CDXLColRef::PmdidCollation() const
+{
+	return m_pmdidCollation;
 }
 
 INT

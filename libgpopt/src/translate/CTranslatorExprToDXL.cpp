@@ -3218,7 +3218,7 @@ CTranslatorExprToDXL::PdxlnCorrelatedNLJoin
 		CMDName *pmdname = GPOS_NEW(m_pmp) CMDName(m_pmp, pcr->Name().Pstr());
 		IMDId *pmdid = pcr->Pmdtype()->Pmdid();
 		pmdid->AddRef();
-		CDXLColRef *pdxlcr = GPOS_NEW(m_pmp) CDXLColRef(m_pmp, pmdname, pcr->UlId(), pmdid, pcr->ITypeModifier());
+		CDXLColRef *pdxlcr = GPOS_NEW(m_pmp) CDXLColRef(m_pmp, pmdname, pcr->UlId(), pmdid, pcr->PmdidCollation(), pcr->ITypeModifier());
 		pdrgdxlcr->Append(pdxlcr);
 	}
 

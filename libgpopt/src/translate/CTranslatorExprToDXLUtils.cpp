@@ -1535,8 +1535,12 @@ CTranslatorExprToDXLUtils::ReplaceSubplan
 
 	IMDId *pmdidType = pcr->Pmdtype()->Pmdid();
 	pmdidType->AddRef();
+
+	IMDId *pmdidCollation = GPOS_NEW(pmp) IMDId(pcr->PmdidCollation());
+	pmdidCollation->AddRef();
+
 	CMDName *pmdname = GPOS_NEW(pmp) CMDName(pmp, pdxlopPrEl->PmdnameAlias()->Pstr());
-	CDXLColRef *pdxlcr = GPOS_NEW(pmp) CDXLColRef(pmp, pmdname, pdxlopPrEl->UlId(), pmdidType, pcr->ITypeModifier());
+	CDXLColRef *pdxlcr = GPOS_NEW(pmp) CDXLColRef(pmp, pmdname, pdxlopPrEl->UlId(), pmdidType, pmdidCollation, pcr->ITypeModifier());
 	CDXLScalarIdent *pdxlnScId = GPOS_NEW(pmp) CDXLScalarIdent(pmp, pdxlcr);
 	CDXLNode *pdxln = GPOS_NEW(pmp) CDXLNode(pmp, pdxlnScId);
 #ifdef GPOS_DEBUG
@@ -1637,7 +1641,10 @@ CTranslatorExprToDXLUtils::PdxlnIdent
 	IMDId *pmdid = pcr->Pmdtype()->Pmdid();
 	pmdid->AddRef();
 
-	CDXLColRef *pdxlcr = GPOS_NEW(pmp) CDXLColRef(pmp, pmdname, pcr->UlId(), pmdid, pcr->ITypeModifier());
+	IMDId *pmdidCollation = GPOS_NEW(pmp) IMDId(pcr->PmdidCollation());
+	pmdidCollation->AddRef();
+
+	CDXLColRef *pdxlcr = GPOS_NEW(pmp) CDXLColRef(pmp, pmdname, pcr->UlId(), pmdid, pmdidCollation, pcr->ITypeModifier());
 	
 	CDXLScalarIdent *pdxlop = GPOS_NEW(pmp) CDXLScalarIdent(pmp, pdxlcr);
 	return GPOS_NEW(pmp) CDXLNode(pmp, pdxlop);

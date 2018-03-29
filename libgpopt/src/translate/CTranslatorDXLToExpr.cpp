@@ -2208,6 +2208,7 @@ CTranslatorDXLToExpr::RegisterMDRelationCtas
 				GPOS_NEW(m_pmp) CMDName(m_pmp, pdxlcd->Pmdname()->Pstr()),
 				pdxlcd->IAttno(),
 				pdxlcd->PmdidType(),
+				pdxlcd->PmdidCollation(),
 				pdxlcd->ITypeModifier(),
 				true, // fNullable,
 				pdxlcd->FDropped(),

@@ -217,6 +217,7 @@ CParseHandlerMetadataColumn::EndElement
 							m_pmdname,
 							m_iAttNo,
 							m_pmdidType,
+							m_pmdidCollation,
 							m_iTypeModifier,
 							m_fNullable,
 							m_fDropped,

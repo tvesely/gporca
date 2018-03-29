@@ -46,6 +46,9 @@ namespace gpdxl
 			// attribute type oid
 			IMDId *m_pmdidType;
 
+			// attribute type oid
+			IMDId *m_pmdidCollation;
+
 			INT m_iTypeModifier;
 
 			// are nulls allowed for this column

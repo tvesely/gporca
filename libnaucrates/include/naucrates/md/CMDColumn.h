@@ -49,6 +49,9 @@ namespace gpmd
 			// column type
 			IMDId *m_pmdidType;
 
+			// column collation
+			IMDId *m_pmdidCollation;
+
 			INT m_iTypeModifier;
 
 			// is NULL an allowed value for the attribute
@@ -73,6 +76,7 @@ namespace gpmd
 				CMDName *pmdname,
 				INT iAttNo,
 				IMDId *pmdidType,
+				IMDId *pmdidCollation,
 				INT iTypeModifier,
 				BOOL fNullable,
 				BOOL fDropped,
@@ -91,6 +95,10 @@ namespace gpmd
 			// column type
 			virtual 
 			IMDId *PmdidType() const;
+
+			// column type
+			virtual
+			IMDId *PmdidCollation() const;
 
 			virtual
 			INT ITypeModifier() const;

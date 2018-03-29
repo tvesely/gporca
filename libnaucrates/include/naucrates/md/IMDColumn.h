@@ -45,6 +45,10 @@ namespace gpmd
 			virtual 
 			IMDId *PmdidType() const = 0;
 
+			// id of attribute type
+			virtual
+			IMDId *PmdidCollation() const = 0;
+
 			virtual
 			INT ITypeModifier() const = 0;
 

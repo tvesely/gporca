@@ -268,7 +268,9 @@ CDXLTokens::Init
 			{EdxltokenValue, GPOS_WSZ_LIT("Value")},
 			{EdxltokenTypeId, GPOS_WSZ_LIT("TypeMdid")},
 			{EdxltokenTypeIds, GPOS_WSZ_LIT("TypeMdids")},
-			
+
+			{EdxltokenCollation, GPOS_WSZ_LIT("CollationMdid")},
+
 			{EdxltokenConstTuple, GPOS_WSZ_LIT("ConstTuple")},
 			{EdxltokenDatum, GPOS_WSZ_LIT("Datum")},
 

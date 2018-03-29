@@ -56,6 +56,9 @@ namespace gpdxl
 			// column type
 			IMDId *m_pmdidType;
 
+			// column collation
+			IMDId *m_pmdidCollation;
+
 			// column type modifier
 			INT m_iTypeModifer;
 
@@ -70,6 +73,7 @@ namespace gpdxl
 				CMDName *pmdname,
 				ULONG ulId,
 				IMDId *pmdidType,
+				IMDId *pmdidCollation,
 				INT iTypeModifier
 				);
 
@@ -79,6 +83,8 @@ namespace gpdxl
 			const CMDName *Pmdname() const;
 
 			IMDId *PmdidType() const;
+
+			IMDId *PmdidCollation() const;
 
 			INT ITypeModifier() const;
 

@@ -31,6 +31,7 @@ CMDColumn::CMDColumn
 	CMDName *pmdname,
 	INT iAttNo,
 	IMDId *pmdidType,
+	IMDId *pmdidCollation,
 	INT iTypeModifier,
 	BOOL fNullable,
 	BOOL fDropped,
@@ -41,6 +42,7 @@ CMDColumn::CMDColumn
 	m_pmdname(pmdname),
 	m_iAttNo(iAttNo),
 	m_pmdidType(pmdidType),
+	m_pmdidCollation(pmdidCollation),
 	m_iTypeModifier(iTypeModifier),
 	m_fNullable(fNullable),
 	m_fDropped(fDropped),
@@ -61,6 +63,7 @@ CMDColumn::~CMDColumn()
 {
 	GPOS_DELETE(m_pmdname);
 	m_pmdidType->Release();
+	m_pmdidCollation->Release();
 	CRefCount::SafeRelease(m_pdxlnDefaultValue);
 }
 
@@ -105,6 +108,12 @@ IMDId *
 CMDColumn::PmdidType() const
 {
 	return m_pmdidType;
+}
+
+IMDId *
+CMDColumn::PmdidCollation() const
+{
+	return m_pmdidCollation;
 }
 
 INT

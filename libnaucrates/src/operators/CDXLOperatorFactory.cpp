@@ -1885,6 +1885,14 @@ CDXLOperatorFactory::Pdxlcr
 						edxltokenElement
 						);
 
+	IMDId *pmdidCollation = PmdidFromAttrs
+							(
+							pmm,
+							attrs,
+							EdxltokenCollation,
+							edxltokenElement
+							);
+
 	// parse optional type modifier
 	INT iTypeModifier = IValueFromAttrs
 						(
@@ -1896,7 +1904,7 @@ CDXLOperatorFactory::Pdxlcr
 						IDefaultTypeModifier
 						);
 	
-	return GPOS_NEW(pmp) CDXLColRef(pmp, pmdname, ulId, pmdidType, iTypeModifier);
+	return GPOS_NEW(pmp) CDXLColRef(pmp, pmdname, ulId, pmdidType, pmdidCollation, iTypeModifier);
 }
 
 //---------------------------------------------------------------------------
